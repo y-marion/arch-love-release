@@ -8,6 +8,7 @@ RUN pacman -Sy && \
     libzip \
     luarocks5.1 && \
   luarocks-5.1 install lua-libzip && \
+	# Install an old version of love-release because pacman's luarocks doesn't support Rockspec format 3.0 yet
   luarocks-5.1 install love-release 2.0.8-1 && \
 	# Set up path
   mkdir ~/bin && \
