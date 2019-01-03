@@ -13,6 +13,7 @@ RUN pacman -Syy && \
   mkdir ~/bin && \
   curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default > ~/bin/butler.zip && \
 	unzip -j ~/bin/butler.zip && \
+	ls -la ~/bin && \
   chmod 755 ~/bin/butler && \
   ~/bin/butler upgrade && \
 	~/bin/butler -V && \
