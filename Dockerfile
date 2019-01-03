@@ -17,8 +17,8 @@ RUN pacman -Sy && \
   curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default && \
 	unzip -j butler.zip && \
   chmod +x butler && \
-  butler upgrade && \
-	butler -V && \
+  ./butler upgrade && \
+	./butler -V && \
 	# Install ghr
 	curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.0/ghr_v0.12.0_linux_386.tar.gz | tar -xz --strip-components 1 && \
   chmod +x ghr
