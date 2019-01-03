@@ -16,6 +16,10 @@ RUN pacman -Syy && \
   mkdir ~/bin && \
   curl https://dl.itch.ovh/butler/linux-amd64/head/butler --output ~/bin/butler && \
   chmod 755 ~/bin/butler && \
-  ~/bin/butler upgrade
+  ~/bin/butler upgrade && \
+	# Install ghr
+	curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.0/ghr_v0.12.0_linux_386.tar.gz | tar -xz --strip-components 1 && \
+	mv ghr ~/bin && \
+  chmod 755 ~/bin/ghr
 
 ENV PATH="$PATH:~/bin"
