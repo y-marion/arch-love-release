@@ -1,6 +1,6 @@
 FROM base/archlinux:latest
 
-RUN pacman -Syy && \
+RUN pacman -Sy && \
   # Install love-release
   yes | pacman -S \
 		git \
