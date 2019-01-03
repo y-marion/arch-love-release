@@ -11,7 +11,8 @@ RUN pacman -Syy && \
   luarocks-5.1 install love-release 2.0.8-1 && \
   # Install itch.io butler
   mkdir ~/bin && \
-  curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default --output ~/bin/butler && \
+  curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default --output | unzip && \
+	mv butler ~/bin && \
   chmod 755 ~/bin/butler && \
   ~/bin/butler upgrade && \
 	~/bin/butler -V && \
