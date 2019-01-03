@@ -9,17 +9,17 @@ RUN pacman -Syy && \
     luarocks5.1 && \
   luarocks-5.1 install lua-libzip && \
   luarocks-5.1 install love-release 2.0.8-1 && \
-  # Install itch.io butler
+	# Set up path
   mkdir ~/bin && \
-  curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default > ~/bin/butler.zip && \
-	unzip -j ~/bin/butler.zip && \
-	ls -la ~/bin && \
-  chmod 755 ~/bin/butler && \
-  ~/bin/butler upgrade && \
-	~/bin/butler -V && \
+	cd ~/bin && \
+  # Install itch.io butler
+  curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default && \
+	unzip -j butler.zip && \
+  chmod +x butler && \
+  butler upgrade && \
+	butler -V && \
 	# Install ghr
-	curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.0/ghr_v0.12.0_linux_386.tar.gz > ~/bin/ghr.tar.gz && \
-	tar -xz --strip-components 1 ~/bin/ghr.tar.gz && \
-  chmod 755 ~/bin/ghr
+	curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.0/ghr_v0.12.0_linux_386.tar.gz | tar -xz --strip-components 1 && \
+  chmod +x ghr
 
 ENV PATH="$PATH:~/bin"
