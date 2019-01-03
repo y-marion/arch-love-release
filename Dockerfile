@@ -3,18 +3,15 @@ FROM base/archlinux:latest
 RUN pacman -Syy && \
   # Install love-release
   yes | pacman -S \
-    gcc \
-    git \
+		git \
+		gcc \
     libzip \
     luarocks5.1 && \
   luarocks-5.1 install lua-libzip && \
   luarocks-5.1 install love-release 2.0.8-1 && \
-  luarocks-5.1 install loverocks && \
-  # Install busted
-  luarocks-5.1 install busted && \
   # Install itch.io butler
   mkdir ~/bin && \
-  curl https://dl.itch.ovh/butler/linux-amd64/head/butler --output ~/bin/butler && \
+  curl https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default --output ~/bin/butler && \
   chmod 755 ~/bin/butler && \
   ~/bin/butler upgrade && \
 	# Install ghr
