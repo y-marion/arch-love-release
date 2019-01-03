@@ -4,15 +4,16 @@ jobs:
     machine: true
     steps:
       - checkout
+      -
       - run:
           name: Build application Docker image
           command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t app .
       - deploy:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker tag app "${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:latest"
               docker push "${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:latest"
             fi
