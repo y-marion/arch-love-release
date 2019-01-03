@@ -8,7 +8,7 @@ RUN pacman -Syy && \
     libzip \
     luarocks5.1 && \
   luarocks-5.1 install lua-libzip && \
-  luarocks-5.1 install love-release && \
+  luarocks-5.1 install love-release 2.0.8-1 && \
   luarocks-5.1 install loverocks && \
   # Install busted
   luarocks-5.1 install busted && \
