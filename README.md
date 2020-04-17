@@ -2,4 +2,4 @@ A minimal Docker image for [love-release](https://github.com/MisterDA/love-relea
 
 Docker image is available on DockerHub as [jessemillar/arch-love-release](https://hub.docker.com/r/jessemillar/arch-love-release/).
 
-See [this file for example usage](https://github.com/jessemillar/the-staff-of-lewis/blob/master/.circleci/config.yml).
+See [this file for example usage](https://github.com/jessemillar/arch-love-release/blob/master/examples/.circleci/config.yml).

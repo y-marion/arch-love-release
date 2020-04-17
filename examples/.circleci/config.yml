@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - master
+    docker:
+      - image: jessemillar/arch-love-release:latest
+    steps:
+      - checkout
+      - run:
+          name: Build with love-release
+          command: love-release -W -M
+      - run:
+          name: Check Files
+          command: ls -la artifacts
+      - run:
+          name: "Publish Release on GitHub and itch.io"
+          command: |
+            VERSION=$(cat conf.lua | grep version | cut -d'"' -f2)
+            ghr -t "${GITHUB_TOKEN}" -u "${CIRCLE_PROJECT_USERNAME}" -r "${CIRCLE_PROJECT_REPONAME}" -c "${CIRCLE_SHA1}" -n "v${VERSION}" -delete "v${VERSION}" ./artifacts/
+            cd artifacts || exit
+            WIN64_FILE=$(ls ./*-win64.zip); butler push "$WIN64_FILE" compycore/the-staff-of-lewis:win64 --userversion "$VERSION"
+            WIN32_FILE=$(ls ./*-win32.zip); butler push "$WIN32_FILE" compycore/the-staff-of-lewis:win32 --userversion "$VERSION"
+            MACOS_FILE=$(ls ./*-macos.zip); butler push "$MACOS_FILE" compycore/the-staff-of-lewis:macos --userversion "$VERSION"
+            # Workaround for issue where butler renames *.love to *.zip
+            LINUX_FILE=$(ls ./*.love); mkdir love-file-dir; mv "$LINUX_FILE" love-file-dir
+            butler push love-file-dir compycore/the-staff-of-lewis:linux --userversion "$VERSION"
