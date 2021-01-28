@@ -1,7 +1,7 @@
 FROM archlinux/base:latest
 
 # Install love-release
-RUN pacman -Syy && yes | pacman -S git gcc libzip luarocks tar
+RUN pacman -Syy && yes | pacman -S git gcc libzip luarocks tar love fakeroot dpkg
 RUN luarocks install love-release
 # Set up path
 RUN mkdir -p /love-release/tmp
